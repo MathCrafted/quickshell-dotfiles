@@ -1,0 +1,9 @@
+X Color Palette and Font
+- Buff spotify player
+- Add wifi, bt, sound toggles
+- Add notification tray
+- Enable tray menus
+X Turn bar into RowLayouts
+X Add a power menu, bound to Super Shift C
+- Add a settings window
+- Add a DeepSeekR1 window
