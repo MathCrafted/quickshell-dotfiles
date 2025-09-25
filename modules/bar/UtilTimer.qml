@@ -5,7 +5,7 @@ import qs.services
 
 Rectangle {
     id: root
-    focus: true
+    focus: hoverHandler.hovered
     
     implicitWidth: 6 * text.text.length + Math.min(2 * radius, height)
     height: parent.height
@@ -35,10 +35,11 @@ Rectangle {
 
     HoverHandler {
         id: hoverHandler
-        acceptedDevices: PointerDevices.AllDevices
+        acceptedDevices: PointerDevice.AllPointerTypes
         // .hovered (bool)
     }
     Keys.onPressed: (event) => {
+        // console.log("Event")
         if (hoverHandler.hovered && !UtilTimer.isActive && UtilTimer.timeRemaining == UtilTimer.timeTotal) {
             // console.log("Hello")
             if (event.key == Qt.Key_W) {
@@ -71,6 +72,9 @@ Rectangle {
                 UtilTimer.timeTotal = Math.max(1, UtilTimer.timeTotal)
             }
             UtilTimer.timeRemaining = UtilTimer.timeTotal
+        } else if(!hoverHandler.hovered) {
+            // console.log("Event Declined")
+            event.accepted = false
         }
     }
 
