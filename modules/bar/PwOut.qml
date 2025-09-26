@@ -8,7 +8,7 @@ Rectangle {
     focus: textSinkName.hoverHandler || textVolumePercent.hoverHandler
     
     height: parent.height
-    implicitWidth: 6 * textSinkName.text.length + 6 * textVolumePercent.text.length + Math.min(2 * radius, height)
+    implicitWidth: textSinkName.implicitWidth + textVolumePercent.implicitWidth + radius
     radius: 15
     color: Appearance.colors.background
 
@@ -16,7 +16,6 @@ Rectangle {
         id: textSinkName
         anchors {
             right: textVolumePercent.left
-            leftMargin: 5
             verticalCenter: parent.verticalCenter
         }
         color: Appearance.colors.primary
@@ -34,7 +33,7 @@ Rectangle {
         id: textVolumePercent
         anchors {
             right: parent.right
-            rightMargin: 5
+            rightMargin: parent.radius / 2
             verticalCenter: parent.verticalCenter
         }
         color: Appearance.colors.primary
@@ -118,7 +117,7 @@ Rectangle {
     
     // Key Events
     Keys.onPressed: (event) => {
-        // console.log("Event")
+        console.log("Event")
         if(textSinkName.hoverHandler.hovered && (event.key == Qt.Key_W || event.key == Qt.Key_S)) {
             // console.log("Key Event")
             // Swap between PW sinks, according to blacklist
